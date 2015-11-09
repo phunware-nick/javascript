@@ -1,15 +1,98 @@
-# Airbnb JavaScript Style Guide() {
+# Phunware JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Adapted from the awesome devs at [Airbnb](https://github.com/airbnb/javascript)
+
+To standardize Javascript styles and conventions, all Phunware javascript developers should adhere to the industry best practices recommended here.
 
 Other Style Guides
  - [ES5](es5/)
+
+ <!---
  - [React](react/)
  - [CSS & Sass](https://github.com/airbnb/css)
  - [Ruby](https://github.com/airbnb/ruby)
+ --->
+
+### Moving forward, please try to adhere to the following reccomendations:
+
+#### No Inline Javascript
+**Why?** Inline javascript tightly couples the “business” logic to the template display logic. This makes it hard to reason about and track down bugs. It also makes it difficult to validate, test and lint JS code. Moving to external files can promote the re-use of existing code and allow for performance enhance minification.
+
+#### ES6 for new javascript
+**Why?** ES6 javascript is not just a passing fad, the spec is now finalized and the new features offer significant advantages over ES5. To make our code base future-proof, we should adopt these features and standards. Plus, you’ll also write significantly less code.
+
+**Note:** ES6 code will be transpiled to ES5 via a Gulp task for cross-browser compatibility.
+
+#### Limit / eliminate variables declared on the global object
+**Why?** Don’t pollute the global namespace! Declaring variables improperly (without ‘var’), writing code outside an IIFE or not using ES6 modules creates variables on the global window object. These variables can collide; causing bugs that are extremely hard to track down. A standard development best practice is to avoid polluting the global namespace, we should adhere to this practice. All new code should be wrapped in an IIFE or use the ES6 module pattern for bundling and minification.
+
+#### Wrap code in IIFE
+**Why?** New code blocks should be wrapped in an IIFE (immediately invoked function expression). This creates a local scope for variable / function declaration and helps prevent global namespace pollution.
+
+For example:
+```javascript
+// Bad - on global window object.
+var foo = 'bar';
+
+function baz() {
+  return 'boom';
+}
+
+// Good - locally scoped.
+(function() {
+  var foo = 'bar';
+
+  function baz() {
+    return 'boom';
+  }
+})();
+```
+
+#### Use 'use strict'
+**Why?** Enforcing strict mode helps catch common errors and places a program or function into ES5 ‘strict mode’. This strict context prevents certain actions (eg: re-declaring variables) from being taken and throws more exceptions. Linting will also be affecting when using strict mode.
+
+#### Use strict comparison operators (===, !==)
+**Why?** Always test for the exact value you expect. Javascript has many falsy and truthy values that could evaluate differently than expected.
+
+For example:
+```javascript
+"1" == 1 // true
+"1" === 1 // false
+1 == '1' // true
+1 === '1' // false
+0 == false // true
+0 === false // false
+null == undefined // true
+null === undefined // false
+```
+
+#### Don’t modify native javascript object’s prototypes
+**Why?** It’s considered bad practice. If multiple code blocks or libraries modify the same prototype method, it can break other implementations, thus it’s frowned upon.
+
+Polyfills are the only acceptable modification of native prototypes.
+
+#### Use 2 spaces for indenting
+**Why?** Consistency rules all - the JS industry has adopted 2 spaces and so should we.
+
+#### Use camelCase for variables and functions; PascalCase for constructors / classes
+**Why?** Again, consistency and industry best practice. It also helps identify constructor functions that require the use of the ‘new’ keyword
+
+#### Prefix jQuery object variables with $
+**Why?** Once again, consistency and industry best practice. Prefixing all jQuery objects makes them easily identifiable.
+
+Example:
+```javascript
+var $myElement = $(‘#myElementId’);
+```
+
+#### Minify and concatenate code when possible
+**Why?** Concatenating code limits the number of HTTP request and helps improve front-end performance. By obfusticating, minifying and gzipping, we minimize the file size and speed up load times.
+
+#### Lint all javascript
+**Why?** Linting (via JSHint) is a community-driven tool to detect errors and potential problems in javascript. Linting javascript helps enforce coding best practices and creates a consistent coding style.
+
 
 ## Table of Contents
 
