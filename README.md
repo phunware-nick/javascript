@@ -21,15 +21,24 @@ Other Style Guides
 **Why?** Inline javascript tightly couples the “business” logic to the template display logic. This makes it hard to reason about and track down bugs. It also makes it difficult to validate, test and lint JS code. Moving to external files can promote the re-use of existing code and allow for performance enhance minification.
 
 #### ES6 for new javascript
-**Why?** ES6 javascript is not just a passing fad, the spec is now finalized and the new features offer significant advantages over ES5. To make our code base future-proof, we should adopt these features and standards. Plus, you’ll also write significantly less code.
+**Why?** ES6 javascript is not just a passing fad, the spec is now finalized and the new features offer significant advantages over ES5. To make our code base future-proof, we should adopt these features and standards. Plus, you’ll write significantly less code.
+
+The following resources will give you a better understanding ES6
+[ES6 Learning](https://github.com/ericdouglas/ES6-Learning)
+[Understanding ES6](https://leanpub.com/understandinges6/read)
+[ES6 Katas (interactive)](http://es6katas.org/)
 
 **Note:** ES6 code will be transpiled to ES5 via a Gulp task for cross-browser compatibility.
 
-#### Limit / eliminate variables declared on the global object
-**Why?** Don’t pollute the global namespace! Declaring variables improperly (without ‘var’), writing code outside an IIFE or not using ES6 modules creates variables on the global window object. These variables can collide; causing bugs that are extremely hard to track down. A standard development best practice is to avoid polluting the global namespace, we should adhere to this practice. All new code should be wrapped in an IIFE or use the ES6 module pattern for bundling and minification.
 
-#### Wrap code in IIFE
-**Why?** New code blocks should be wrapped in an IIFE (immediately invoked function expression). This creates a local scope for variable / function declaration and helps prevent global namespace pollution.
+#### Limit / eliminate variables declared on the global object
+**Why?** Don’t pollute the global namespace! Declaring variables improperly (without const, let or var), writing code outside an IIFE or not using ES6 modules creates variables on the global window object. These variables can collide; causing bugs that are extremely hard to track down. A standard development best practice is to avoid polluting the global namespace, we should adhere to this practice. All new code should be wrapped in an IIFE or use the ES6 module pattern for bundling and minification.
+
+#### Use ES6 modules first, ES5 code wrapped in IIFE second.
+**Why?** ES6 modules will be automatically encapsulated in an IIFE during the bundling process. If you must write ES5 try to
+wrap it in an IIFE (immediately invoked function expression). This creates a local scope for variable / function declaration and helps prevent global namespace pollution and collision.
+
+Remember - ES6 first, ES5 IIFE for legacy code.
 
 For example:
 ```javascript
