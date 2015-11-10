@@ -9,12 +9,6 @@ To standardize Javascript styles and conventions, all Phunware javascript develo
 Other Style Guides
  - [ES5](es5/)
 
- <!---
- - [React](react/)
- - [CSS & Sass](https://github.com/airbnb/css)
- - [Ruby](https://github.com/airbnb/ruby)
- --->
-
 ### Moving forward, please try to adhere to the following reccomendations:
 
 #### No Inline Javascript
