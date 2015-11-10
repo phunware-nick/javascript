@@ -94,42 +94,15 @@ var $myElement = $('#myElementId');
 **Why?** Concatenating code limits the number of HTTP request and helps improve front-end performance. By obfusticating, minifying and gzipping, we minimize the file size and speed up load times.
 
 #### Lint all javascript
-**Why?** Linting (via JSHint) is a community-driven tool to detect errors and potential problems in javascript. Linting javascript helps enforce coding best practices and creates a consistent coding style.
+**Why?** Linting (via ESLint) is a community-driven tool to detect errors and potential problems in javascript. Linting javascript helps enforce coding best practices and creates a consistent coding style.
 
-All javascript should be linted before production bundling.
+All javascript should be linted before production bundling. More information on linting can be found in the [MaaS Wiki](https://github.com/phunware/maas-portal/wiki/Linting-Javascript)
 
 Since most popular IDE’s support linting, it’s recommended to use an inline linter on each save. For more information on inline linting and plugins for your editor, please see the following webpage:
 
-[http://jshint.com/install/](http://jshint.com/install/)
+[http://eslint.org/docs/user-guide/integrations.html](http://eslint.org/docs/user-guide/integrations.html)
 
-#### Inline JSHint option basics
-Sometimes the default JSHint options won’t correctly lint your code base, throwing errors and failing to bundle correctly. In this case, you can use inline JSHint comments to adjust the default settings.
-
-For example, if you’re writing ES6 code, you’ll need to add the follow JSHint option at the top of your file:
-```javascript
-/* jshint esnext:true */
-```
-
-For node js code:
-```javascript
-/* jshint node:true */
-```
-
-If you’re bundling 3rd party code that’s already minified, add the following comment to skip linting:
-```javascript
-/* jshint ignore:start */
-```
-
-**NOTE:** Do not skip your own code.
-
-To apply the options project wide, create a .jshintrc file that contains a json object.
-```javascript
-{
-  "esnext": true
-}
-```
-
-More information on JSHint configuration can be found here: [http://jshint.com/docs/](http://jshint.com/docs/)
+**Please refer to the [MaaS Wiki](https://github.com/phunware/maas-portal/wiki/Linting-Javascript) for more information on linting**
 
 
 ## Table of Contents
